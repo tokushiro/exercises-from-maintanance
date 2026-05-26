@@ -23,6 +23,10 @@ This folder contains the Software Maintenance exercise answers separated by lect
 
 The original single-file version is kept as [`software-maintenance-portfolio.md`](software-maintenance-portfolio.md), but the separated files above are the clearer submission version.
 
+For checking the assignment one exercise at a time, use the exercise files here:
+
+- [`../exercises/README.md`](../exercises/README.md)
+
 ## Implemented maintenance change
 
 The implemented change is in:

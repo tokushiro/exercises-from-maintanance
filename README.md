@@ -15,28 +15,31 @@ This repository contains the completed Software Maintenance lab/portfolio work b
 - Portfolio documentation answering the course lab prompts.
 - A lecture/lab-separated documentation structure so the work is easier to follow.
 
+## Exercise documents
+
+Start here if checking the assignment exercise-by-exercise:
+
+- [`docs/exercises/README.md`](docs/exercises/README.md)
+
+Separate file for each exercise:
+
+- [`01-intro-lab.md`](docs/exercises/01-intro-lab.md)
+- [`02-change-request-and-user-stories.md`](docs/exercises/02-change-request-and-user-stories.md)
+- [`03-concept-location.md`](docs/exercises/03-concept-location.md)
+- [`04-impact-analysis.md`](docs/exercises/04-impact-analysis.md)
+- [`05-continuous-integration.md`](docs/exercises/05-continuous-integration.md)
+- [`06-refactoring.md`](docs/exercises/06-refactoring.md)
+- [`07-actualization-clean-architecture-solid.md`](docs/exercises/07-actualization-clean-architecture-solid.md)
+- [`08-testing.md`](docs/exercises/08-testing.md)
+- [`09-bdd-user-stories-to-scenarios.md`](docs/exercises/09-bdd-user-stories-to-scenarios.md)
+
 ## Portfolio documents
 
-Start here:
+The broader portfolio-style version is here:
 
 - [`docs/portfolio/README.md`](docs/portfolio/README.md)
-
-Separated by lecture/lab:
-
-- [`01-introduction-and-case-study.md`](docs/portfolio/01-introduction-and-case-study.md)
-- [`02-change-and-requirements.md`](docs/portfolio/02-change-and-requirements.md)
-- [`03-concept-location.md`](docs/portfolio/03-concept-location.md)
-- [`04-impact-analysis-and-ci.md`](docs/portfolio/04-impact-analysis-and-ci.md)
-- [`05-refactoring-and-better-code.md`](docs/portfolio/05-refactoring-and-better-code.md)
-- [`06-actualization-clean-architecture-and-design.md`](docs/portfolio/06-actualization-clean-architecture-and-design.md)
-- [`07-testing.md`](docs/portfolio/07-testing.md)
-- [`08-bdd.md`](docs/portfolio/08-bdd.md)
-- [`09-conclusion-and-technical-debt.md`](docs/portfolio/09-conclusion-and-technical-debt.md)
-- [`coverage-matrix.md`](docs/portfolio/coverage-matrix.md)
-
-The original combined report is also kept:
-
-- [`software-maintenance-portfolio.md`](docs/portfolio/software-maintenance-portfolio.md)
+- [`docs/portfolio/coverage-matrix.md`](docs/portfolio/coverage-matrix.md)
+- [`docs/portfolio/software-maintenance-portfolio.md`](docs/portfolio/software-maintenance-portfolio.md)
 
 ## Main changed files
 
