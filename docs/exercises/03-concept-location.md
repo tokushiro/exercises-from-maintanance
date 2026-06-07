@@ -15,7 +15,15 @@ The selected concept is:
 
 ## Concept location approach
 
-I searched the source code using terms related to the feature:
+The course names three concept-location techniques. I used the first two and noted why the third was not needed:
+
+| Technique | Used? | How |
+|---|---|---|
+| Grep / keyword search | Yes (primary) | Searched for the terms below. This was enough to identify the owning class. |
+| Dependency search | Yes (light) | Walked callers of `SVGRectFigure`'s radius setters to confirm reach into the UI handle and SVG I/O code. |
+| Runtime / dynamic debugging (e.g. Featureous-style tracing) | Not needed | The keyword + dependency walk already gave a small, confident set. Runtime tracing would have been the next step if the feature had been more scattered. |
+
+### Keyword (grep) search terms
 
 - `SVGRect`
 - `rect`
@@ -25,13 +33,17 @@ I searched the source code using terms related to the feature:
 - `arcHeight`
 - `radius`
 
-Then I followed the feature from the likely user action to the domain object:
+### Dynamic / dependency path
+
+I then followed the feature from the likely user action to the domain object:
 
 1. User selects an SVG rectangle.
 2. The editor shows handles.
-3. The radius handle changes the radius.
-4. The figure stores the radius values.
+3. The radius handle (`SVGRectRadiusHandle`) changes the radius.
+4. The figure (`SVGRectFigure`) stores the radius values.
 5. Drawing, hit testing, and persistence use the figure state.
+
+This is the dependency-search step: starting from the entry point and stepping through callers until the owning class is found.
 
 ## Initial set of classes
 

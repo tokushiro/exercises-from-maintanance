@@ -11,6 +11,16 @@ The lab asks us to estimate the impacted set of classes after concept location. 
 
 The planned change is to make rounded rectangle radius setters in `SVGRectFigure` invalidate derived geometry when radius values change.
 
+## Initial impact set
+
+The initial impact set is the smallest set of classes we already know must change to implement the request.
+
+```
+Initial impact set = { SVGRectFigure }
+```
+
+This is the class that owns the radius fields and the cached derived shapes. Concept location already pointed here.
+
 ## Estimated impact set
 
 | Package name | # of classes visited | Comments |
@@ -20,6 +30,15 @@ The planned change is to make rounded rectangle radius setters in `SVGRectFigure
 | `org.jhotdraw.samples.svg` | 3 | SVG application and attribute context. This package defines defaults and editor behavior around SVG figures. No direct change was needed. |
 | `org.jhotdraw.draw.handle` | 2 | General handle/editing package. Checked to understand how handles should mutate figures. The existing radius handle can keep using the same setter methods. |
 | `org.jhotdraw.draw` | 3 | Base drawing and figure behavior. Important because `SVGRectFigure` participates in drawing, invalidation, and hit testing through JHotDraw abstractions. |
+
+## Scattering and entanglement
+
+| Term | Meaning | This feature |
+|---|---|---|
+| Scattering | One feature spread across many classes | **Low.** The radius concept shows up in the handle and in SVG IO factories, but the invariant has a single owner (`SVGRectFigure`). |
+| Entanglement | One class mixing many unrelated features | **Low** for the part we touched. `SVGRectFigure` is a large class overall, but the radius logic is concerned only with rectangle geometry — it does not mix with rendering, IO, or unrelated attribute logic. |
+
+Because scattering and entanglement are both low, the gap between the initial impact set (1 class) and the estimated impact set (5 packages visited, none requiring changes) is justified by *checking* rather than *changing*: we visited those packages to confirm we didn't need to touch them.
 
 ## Impact conclusion
 

@@ -32,13 +32,46 @@ Changing the radius without invalidation risks stale derived state. That is a ma
 
 ## Refactoring applied
 
-The refactoring is small and local:
+The course distinguishes two refactoring phases in the 8-phase software-change sequence: **prefactoring** before the change and **postfactoring** after the change.
 
-- remove unnecessary old-value locals;
+### Prefactoring (before implementing)
+
+Done to make the change smaller and safer to apply:
+
+- removed unused `oldValue` local variables so the setter's control flow matched its actual behaviour;
+- confirmed `invalidate()` on the base figure already covers the cached transformed/hit shapes, so no new mechanism was needed;
+- confirmed the setters were the only mutation paths into `arcWidth` / `arcHeight`;
+- left the public method signatures untouched so callers don't move.
+
+After prefactoring, behaviour is preserved. Existing callers and tests still pass. The class is just better shaped for the planned change.
+
+### Actualization (the change itself)
+
 - compare the existing radius with the new radius;
 - mutate only when the value changes;
 - call `invalidate()` when mutation happens;
 - make `setArc(width, height)` update both radius values and invalidate once.
+
+### Postfactoring (after implementing)
+
+Done to lock the new shape in and avoid leaving residual smells:
+
+- consolidated the three setters to the same "compare → mutate → invalidate" shape (**Consolidate Duplicate Conditional Fragments**);
+- pushed the invalidation invariant into the state owner so no caller has to remember it (**Encapsulate Update**);
+- added unit tests in `SVGRectFigureTest` so the new behaviour is pinned;
+- early-return on no-op writes so the drawing pipeline is not invalidated unnecessarily.
+
+### Fowler-catalog notes
+
+| Catalog smell | Where it showed up | What we did |
+|---|---|---|
+| Unused variable | `oldValue` locals in the setters | Removed in prefactoring. |
+| Duplicate Conditional Fragments | Three setters needed the same compare/mutate/invalidate shape | Consolidated in postfactoring. |
+| Shotgun surgery (risk) | Putting invalidation in callers would force every future caller to remember it | Avoided by keeping the invariant in `SVGRectFigure`. |
+
+### Rule of Three
+
+Three setters share the same control-flow shape. Two would have been fine to leave inline; three is the point at which we consolidate the pattern.
 
 ## Before/after intent
 

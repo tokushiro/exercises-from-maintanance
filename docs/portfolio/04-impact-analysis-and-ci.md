@@ -27,6 +27,26 @@ The analysis followed both code structure and likely runtime behavior:
 - add tests close to the changed behavior;
 - run the Maven test suite.
 
+## Initial impact set vs. estimated impact set
+
+The course distinguishes the **initial impact set** (classes we already know must change) from the **estimated impact set** (classes we *might* have to visit to be confident).
+
+```
+Initial impact set   = { SVGRectFigure }
+Estimated impact set = 5 packages, ~17 classes visited (table below)
+```
+
+The estimated set is bigger than the initial set because we wanted to confirm we did not have to touch SVG IO, the handle layer, or the base drawing framework. The result of that walk: we did not change any of them.
+
+## Scattering and entanglement
+
+| Term | Meaning | This feature |
+|---|---|---|
+| Scattering | One feature spread across many classes | **Low.** Radius is mentioned in the handle and in SVG IO factories, but the invariant has a single owner. |
+| Entanglement | One class mixing many unrelated features | **Low** for the part we touched. `SVGRectFigure` is a large class overall, but the radius logic only deals with rectangle geometry — it does not mix with rendering or IO. |
+
+Low scattering and low entanglement are the reason the implementation could safely stay local to one class.
+
 ## Impact table
 
 | Area/package | Classes checked | Impact level | Notes |

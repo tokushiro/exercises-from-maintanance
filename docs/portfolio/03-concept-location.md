@@ -13,7 +13,15 @@ Concept location is about finding where a user-visible concept is implemented in
 
 ## Search strategy
 
-The search started from domain words and likely implementation terms:
+The course names three concept-location techniques. This work used the first two and noted why the third was not needed:
+
+| Technique | Used? | Notes |
+|---|---|---|
+| Grep / keyword search | Yes (primary) | Searched the codebase for the domain/implementation terms below. |
+| Dependency search | Yes (secondary) | Followed callers of `SVGRectFigure`'s radius setters back to the handle and to the SVG IO factories. |
+| Runtime debugging (dynamic tracing, Featureous-style) | Not needed | The keyword + dependency walk already produced a small, confident initial set. A runtime trace would have been the next step if scattering had been higher. |
+
+### Keyword (grep) terms
 
 - `rect`
 - `rectangle`
@@ -24,7 +32,9 @@ The search started from domain words and likely implementation terms:
 - `radius`
 - `SVGRect`
 
-Then the search followed call relationships from the figure class to UI handles and SVG I/O code.
+### Dependency search
+
+After the grep located `SVGRectFigure`, the search followed call relationships from the figure class to UI handles and SVG I/O code, and back the other way (callers of the radius setters).
 
 ## Located classes
 

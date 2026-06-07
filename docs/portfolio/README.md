@@ -19,7 +19,8 @@ This folder contains the Software Maintenance exercise answers separated by lect
 | 7 | [`07-testing.md`](07-testing.md) | Software testing lab and implemented JUnit tests |
 | 8 | [`08-bdd.md`](08-bdd.md) | BDD scenarios and mapping to executable tests |
 | 9 | [`09-conclusion-and-technical-debt.md`](09-conclusion-and-technical-debt.md) | Conclusion, software change example, technical debt reflection |
-| 10 | [`coverage-matrix.md`](coverage-matrix.md) | Checklist showing how each note/lab is represented |
+| 10 | [`theory-recap.md`](theory-recap.md) | Named theory (Fowler smells, Rule of Three, SOLID, GRASP, Law of Demeter, scattering/entanglement, concept-location techniques) mapped to the change |
+| 11 | [`coverage-matrix.md`](coverage-matrix.md) | Checklist showing how each note/lab is represented |
 
 The original single-file version is kept as [`software-maintenance-portfolio.md`](software-maintenance-portfolio.md), but the separated files above are the clearer submission version.
 
